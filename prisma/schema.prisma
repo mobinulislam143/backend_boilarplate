@@ -1,0 +1,96 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id         String             @id @default(auto()) @map("_id") @db.ObjectId
+    name       String
+    email      String             @unique
+    password   String
+    otp        String?
+    otpExpires DateTime?
+    isVerified VerificationStatus @default(PENDING)
+    status     Boolean            @default(true)
+    role       UserRole           @default(USER)
+    createdAt  DateTime           @default(now())
+    updatedAt  DateTime           @updatedAt
+
+    @@map("users")
+}
+
+model Category {
+    id       String  @id @default(auto()) @map("_id") @db.ObjectId
+    name     String  @unique
+    slug     String  @unique
+    imageUrl String?
+    count    Int     @default(0)
+
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    products  Product[]
+
+    @@map("categories")
+}
+
+model Product {
+    id           String   @id @default(auto()) @map("_id") @db.ObjectId
+    name         String
+    description  String?
+    facebookUrl  String?
+    instagramUrl String?
+    websiteUrl   String?
+    imageUrl     String[]
+
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+    categoryId String   @db.ObjectId
+    category   Category @relation(fields: [categoryId], references: [id])
+
+    @@map("products")
+}
+
+model Plan {
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    planName    String
+    price       Float
+    feature     String[]
+    description String?
+    currency    String   @default("USD")
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
+
+model Contact {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    firstName String
+    lastName  String
+    email     String
+    phone     String
+    message   String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("contacts")
+}
+
+enum UserRole {
+    ADMIN
+    USER
+}
+
+enum UserStatus {
+    true
+    false
+}
+
+enum VerificationStatus {
+    PENDING
+    REQUESTED
+    ACCEPTED
+    REJECTED
+}

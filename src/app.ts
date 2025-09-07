@@ -5,9 +5,11 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
-import router from './routes';
+// import router from './routes';
 import httpStatus from 'http-status';
-import GlobalErrorHandler from './middlewares/globalErrorHandler';
+import router from './app/routes';
+import GlobalErrorHandler from './app/middlewares/globalErrorHandler';
+// import GlobalErrorHandler from './middlewares/globalErrorHandler';
 
 
 dotenv.config(); // Load .env variables

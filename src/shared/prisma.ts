@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { initiateSuperAdmin } from "../db/db";
+import { initiateSuperAdmin } from "../app/db/db";
+// import { initiateSuperAdmin } from "../db/db";
 
 const prisma = new PrismaClient();
 

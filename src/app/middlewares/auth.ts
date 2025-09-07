@@ -3,10 +3,11 @@ import { NextFunction, Request, Response } from "express";
 import { JwtPayload, Secret } from "jsonwebtoken";
 
 import httpStatus from "http-status";
-import config from "../config";
-import ApiError from "../errors/ApiError";
-import { jwtHelpers } from "../helper/jwtHelper";
-import prisma from "../shared/prisma";
+import ApiError from "../../errors/ApiError";
+import config from "../../config";
+import { jwtHelpers } from "../../helper/jwtHelper";
+import prisma from "../../shared/prisma";
+
 
 
 const auth = (...roles: string[]) => {

@@ -1,7 +1,9 @@
 import { UserRole } from '@prisma/client';
 import * as bcrypt from "bcrypt"
-import config from "../config"
-import prisma from "../shared/prisma"
+import config from '../../config';
+import prisma from '../../shared/prisma';
+// import config from "../config"
+// import prisma from "../shared/prisma"
 
 export const initiateSuperAdmin = async () => {
   const hashedPassword: string = await bcrypt.hash(

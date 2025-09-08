@@ -1,11 +1,15 @@
 import { User } from '@prisma/client';
-import ApiError from "../../errors/ApiError";
-import { jwtHelpers } from "../../helper/jwtHelper";
-import prisma from "../../shared/prisma";
+// import ApiError from "../../errors/ApiError";
+// import { jwtHelpers } from "../../helper/jwtHelper";
+// import prisma from "../../shared/prisma";
 // import { generateToken } from '../../utils/jwt';
 import * as bcrypt from "bcrypt";
-import config from "../../config";
+// import config from "../../config";
 import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
+import config from '../../../config';
+import prisma from '../../../shared/prisma';
+import { jwtHelpers } from '../../../helper/jwtHelper';
 
  const registerUser = async (payload: User) => {
   const existingUser = await prisma.user.findUnique({

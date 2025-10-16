@@ -1,9 +1,11 @@
 
 import { Request, Response } from 'express';
-import catchAsync from '../../shared/catchAsync';
-import sendResponse from '../../shared/sendResponse';
+// import catchAsync from '../../shared/catchAsync';
+// import sendResponse from '../../shared/sendResponse';
 import httpStatus from 'http-status';
 import { AuthService } from './auth.service';
+import catchAsync from '../../../shared/catchAsync';
+import sendResponse from '../../../shared/sendResponse';
 
 const registerUser = catchAsync(async(req: Request, res: Response) => {
   const result = await AuthService.registerUser(req.body);

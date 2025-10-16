@@ -68,7 +68,7 @@ const accessToken = jwtHelpers.generateToken(
     config.jwt.jwt_secret!,
     config.jwt.expires_in as string
   )
-  return {data: existinguser, token: accessToken}
+  return {results: existinguser, token: accessToken}
 
 }
 
